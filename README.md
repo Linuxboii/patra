@@ -16,6 +16,14 @@ Merge, split and rotate PDFs privately.
 
 Built on pdf-lib (MIT), vendored. Files never leave the browser.
 
+## Demand
+
+iLovePDF, the best-known browser PDF tool, says it serves more than 20 million users a day. Merging and splitting are its core features.
+
+- [iLovePDF: 15 years in numbers](https://www.ilovepdf.com/blog/ilovepdf-15-years-anniversary-milestones)
+
+These figures measure demand for the task, from existing tools. They are third-party estimates or company claims, not usage of this tool.
+
 ## Privacy
 
 Everything runs in your browser. There is no backend, no analytics and no account. Nothing you enter is uploaded.
