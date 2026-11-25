@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Patra - Merge, split and rotate PDFs privately</title>
+  <meta name="description" content="Merge PDFs and images into one PDF, pull out or delete pages, rotate pages, or split a PDF every few pages. Everything runs in your browser; files are never uploaded.">
+  <link rel="stylesheet" href="base.css">
+  <style>
+    :root { --accent: #b91c1c; }
+    @media (prefers-color-scheme: dark) { :root { --accent: #f87171; --accent-ink: #2b0606; } }
+    .tabs { display: inline-flex; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .tabs button { border: 0; border-radius: 0; background: transparent; }
+    .tabs button[aria-selected=true] { background: var(--accent); color: var(--accent-ink); }
+    .file { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; padding: 10px 0; }
+    .file + .file { border-top: 1px solid var(--border); }
+    .file .name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .file .row button { padding: 5px 10px; font-size: 13px; }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap">
+    <h1>Patra</h1>
+    <p>Merge, split, reorder and rotate PDFs. Your documents are processed on this device and never uploaded.</p>
+  </div></header>
+  <main><div class="wrap stack">
+    <div class="tabs" role="tablist">
+      <button type="button" role="tab" id="tabMerge" aria-selected="true">Merge files</button>
+      <button type="button" role="tab" id="tabPages" aria-selected="false">Edit pages</button>
+    </div>
+    <div class="grid-2" id="merge">
+      <section class="panel stack">
+        <div class="dropzone" id="mDrop" tabindex="0" role="button" aria-label="Add PDFs or images"><strong>Drop PDFs or photos here</strong><br>or click to choose. JPG and PNG become A4 pages.</div>
+        <input type="file" id="mFile" accept="application/pdf,image/jpeg,image/png" multiple hidden>
+        <label class="row small"><input type="checkbox" id="a4" checked> Fit photos onto A4 pages</label>
+      </section>
+      <section class="panel stack" aria-live="polite">
+        <h2>Order</h2>
+        <div id="mList"><p class="empty">Files you add show up here. Move them into the order you want.</p></div>
+        <p class="err" id="mErr" role="alert"></p>
+        <div><button class="primary" id="mGo" type="button" disabled>Merge and download</button></div>
+      </section>
+    </div>
+    <div class="grid-2" id="pages" hidden>
+      <section class="panel stack">
+        <div class="dropzone" id="pDrop" tabindex="0" role="button" aria-label="Choose a PDF"><strong>Drop a PDF here</strong><br>or click to choose one</div>
+        <input type="file" id="pFile" accept="application/pdf" hidden>
+        <p class="small" id="pInfo" aria-live="polite"></p>
+      </section>
+      <section class="panel stack">
+        <label class="field">What to do
+          <select id="pAction">
+            <option value="extract">Keep only these pages, in this order</option>
+            <option value="remove">Delete these pages</option>
+            <option value="rotate">Rotate these pages a quarter turn right</option>
+            <option value="rotateL">Rotate these pages a quarter turn left</option>
+            <option value="split">Split into files of N pages each</option>
+          </select>
+        </label>
+        <label class="field" id="specField">Pages<span class="hint">Like 1-3, 5, 8- or "all". Writing 5-1 reverses.</span><input id="pSpec" type="text" value="all"></label>
+        <label class="field" id="nField" hidden>Pages per file<input id="pN" type="number" min="1" value="1"></label>
+        <p class="err" id="pErr" role="alert"></p>
+        <div><button class="primary" id="pGo" type="button" disabled>Apply and download</button></div>
+      </section>
+    </div>
+  </div></main>
+  <footer class="bottom"><div class="wrap">
+    <span>Patra. Free and open source. Built on pdf-lib, MIT.</span>
+    <span><a href="https://github.com/Linuxboii/patra">Source</a> &nbsp; <a href="https://sushanth.avlokai.com">Made by Sushanth Kasturi</a></span>
+  </div></footer>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

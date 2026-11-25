@@ -1,0 +1,12 @@
+{
+  "name": "patra",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Merge, split and rotate PDFs privately",
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test",
+    "start": "npx --yes serve -l 5173 ."
+  }
+}
